@@ -196,12 +196,7 @@ module Net
         end
 
         def host_key_format
-          case host_key
-          when /^([a-z0-9-]+)-cert-v\d{2}@openssh.com$/
-            $1 # rubocop:disable Style/PerlBackrefs
-          else
-            host_key
-          end
+          host_key.gsub(/\-cert\-v\d{2}@openssh\.com/, '')
         end
 
         private
